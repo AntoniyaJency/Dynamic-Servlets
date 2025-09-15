@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Servlets - Mathematical Operations</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .checkbox-group {
+            margin-top: 20px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .checkbox-item:hover {
+            background: #e9ecef;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .required {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mathematical Operations</h1>
+        <form id="mathForm" action="MathOperationsServlet" method="post">
+            <div class="form-group">
+                <label for="number">Enter a Number <span class="required">*</span></label>
+                <input type="number" id="number" name="number" required 
+                       placeholder="Enter a positive number" min="1" step="1">
+                <div class="error" id="numberError">Please enter a valid positive number</div>
+            </div>
+            
+            <div class="checkbox-group">
+                <h3>Select Operations:</h3>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="factorial" name="operations" value="factorial">
+                    <label for="factorial">Find Factorial of the given number</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="palindrome" name="operations" value="palindrome">
+                    <label for="palindrome">Find whether the number is Palindrome or not</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="fibonacci" name="operations" value="fibonacci">
+                    <label for="fibonacci">Find Fibonacci series of the given number</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="prime" name="operations" value="prime">
+                    <label for="prime">Find whether the number is Prime or Not</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="cubeRoot" name="operations" value="cubeRoot">
+                    <label for="cubeRoot">Find the cube root of the number</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Calculate Operations</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('mathForm').addEventListener('submit', function(e) {
+            const numberInput = document.getElementById('number');
+            const number = parseFloat(numberInput.value);
+            const errorDiv = document.getElementById('numberError');
+            
+            // Reset error display
+            errorDiv.style.display = 'none';
+            numberInput.style.borderColor = '#e1e5e9';
+            
+            // Validation
+            if (isNaN(number) || number <= 0 || !Number.isInteger(number)) {
+                e.preventDefault();
+                errorDiv.style.display = 'block';
+                numberInput.style.borderColor = '#dc3545';
+                numberInput.focus();
+                return false;
+            }
+            
+            // Check if at least one operation is selected
+            const checkboxes = document.querySelectorAll('input[name="operations"]:checked');
+            if (checkboxes.length === 0) {
+                e.preventDefault();
+                alert('Please select at least one operation to perform.');
+                return false;
+            }
+            
+            return true;
+        });
+        
+        // Real-time validation
+        document.getElementById('number').addEventListener('input', function() {
+            const number = parseFloat(this.value);
+            const errorDiv = document.getElementById('numberError');
+            
+            if (this.value === '') {
+                errorDiv.style.display = 'none';
+                this.style.borderColor = '#e1e5e9';
+            } else if (isNaN(number) || number <= 0 || !Number.isInteger(number)) {
+                errorDiv.style.display = 'block';
+                this.style.borderColor = '#dc3545';
+            } else {
+                errorDiv.style.display = 'none';
+                this.style.borderColor = '#28a745';
+            }
+        });
+    </script>
+</body>
+</html>
