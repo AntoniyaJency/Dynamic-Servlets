@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
  * Main servlet that handles mathematical operations requests.
  * Uses Strategy pattern for scalable operation handling.
  */
-@WebServlet("/MathOperationsServlet")
 public class MathOperationsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     

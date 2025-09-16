@@ -1,0 +1,9 @@
+com/mathservlets/MathOperation.class
+com/mathservlets/MathOperationsServlet.class
+com/mathservlets/FibonacciOperation.class
+com/mathservlets/ValidationResult.class
+com/mathservlets/PrimeOperation.class
+com/mathservlets/OperationFactory.class
+com/mathservlets/CubeRootOperation.class
+com/mathservlets/PalindromeOperation.class
+com/mathservlets/FactorialOperation.class
