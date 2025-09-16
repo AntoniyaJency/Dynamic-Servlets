@@ -3,111 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Servlets - Mathematical Operations</title>
+    <title>The Universe of Mathematics</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        * {
             margin: 0;
-            padding: 20px;
-            min-height: 100vh;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Galaxy Background */
+        .galaxy-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Title */
+        .universe-title {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 
+                2px 2px 4px rgba(0,0,0,0.8),
+                0 0 8px rgba(0,255,255,0.3);
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            animation: titleGlow 3s ease-in-out infinite alternate, rainbowFlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 
+                    2px 2px 4px rgba(0,0,0,0.8),
+                    0 0 8px rgba(0,255,255,0.3);
+            }
+            100% {
+                text-shadow: 
+                    2px 2px 4px rgba(0,0,0,0.8),
+                    0 0 12px rgba(255,0,255,0.4);
+            }
+        }
+        
+        @keyframes rainbowFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        
+        /* Subtitle */
+        .subtitle {
+            background: linear-gradient(45deg, #ff9ff3, #54a0ff, #5f27cd, #00d2d3, #ff9f43, #ee5a24);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 
+                1px 1px 2px rgba(0,0,0,0.8),
+                0 0 6px rgba(255,255,255,0.2);
+            opacity: 0.9;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+            animation: subtitleShimmer 4s ease-in-out infinite alternate, subtitleFlow 5s ease-in-out infinite;
+        }
+        
+        @keyframes subtitleShimmer {
+            0% {
+                text-shadow: 
+                    1px 1px 2px rgba(0,0,0,0.8),
+                    0 0 6px rgba(255,255,255,0.2);
+            }
+            100% {
+                text-shadow: 
+                    1px 1px 2px rgba(0,0,0,0.8),
+                    0 0 8px rgba(0,255,255,0.3);
+            }
+        }
+        
+        @keyframes subtitleFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .description {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            text-shadow: 
+                1px 1px 2px rgba(0,0,0,0.8),
+                0 0 4px rgba(255,255,255,0.1);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-align: center;
+            max-width: 700px;
+            line-height: 1.7;
+            font-style: italic;
+            animation: descriptionGlow 5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes descriptionGlow {
+            0% {
+                text-shadow: 
+                    1px 1px 2px rgba(0,0,0,0.8),
+                    0 0 4px rgba(255,255,255,0.1);
+            }
+            100% {
+                text-shadow: 
+                    1px 1px 2px rgba(0,0,0,0.8),
+                    0 0 6px rgba(0,255,255,0.2);
+            }
+        }
+        
+        /* Enter Button */
+        .enter-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff, #00d2d3);
+            background-size: 400% 400%;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            animation: gradientShift 3s ease infinite, buttonGlow 2s ease-in-out infinite alternate;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 
+                    0 10px 30px rgba(0,0,0,0.3),
+                    inset 0 1px 0 rgba(255,255,255,0.2),
+                    0 0 20px rgba(255,107,107,0.4);
+            }
+            100% {
+                box-shadow: 
+                    0 10px 30px rgba(0,0,0,0.3),
+                    inset 0 1px 0 rgba(255,255,255,0.2),
+                    0 0 30px rgba(84,160,255,0.6);
+            }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .enter-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 40px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        
+        .enter-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Math Form Container (Hidden by default) */
+        .math-form-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .math-form-container.show {
+            display: flex;
         }
         
         .container {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 
+                        0 0 100px rgba(0, 255, 255, 0.1),
+                        inset 0 1px 0 rgba(255,255,255,0.2);
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            margin: 20px;
+            animation: formAppear 0.6s ease-out;
+        }
+        
+        @keyframes formAppear {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.8) translateY(50px); 
+                filter: blur(10px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: scale(1) translateY(0); 
+                filter: blur(0);
+            }
         }
         
         h1 {
             text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 2.2em;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+                         0 0 40px rgba(0, 255, 255, 0.3),
+                         2px 2px 4px rgba(0,0,0,0.8);
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            font-weight: bold;
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            animation: slideInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        
+        @keyframes slideInUp {
+            0% { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: 600;
-            color: #555;
+            color: #ffffff;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         
         input[type="number"] {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
             box-sizing: border-box;
+            text-align: center;
+        }
+        
+        input[type="number"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         input[type="number"]:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3),
+                        0 0 40px rgba(0, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
         }
         
         .checkbox-group {
-            margin-top: 20px;
+            margin-top: 30px;
+            animation: slideInUp 0.6s ease-out;
+            animation-delay: 0.4s;
+            animation-fill-mode: both;
         }
         
         .checkbox-item {
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .checkbox-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .checkbox-item:hover::before {
+            left: 100%;
         }
         
         .checkbox-item:hover {
-            background: #e9ecef;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
         }
         
         .checkbox-item input[type="checkbox"] {
-            margin-right: 12px;
-            transform: scale(1.2);
+            margin-right: 15px;
+            transform: scale(1.5);
+            accent-color: #00ffff;
         }
         
         .checkbox-item label {
             margin: 0;
             cursor: pointer;
             flex: 1;
+            color: #ffffff;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
         }
         
         .submit-btn {
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
+            border-radius: 25px;
+            font-size: 20px;
+            font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+            animation: gradientShift 3s ease infinite;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
         }
         
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        .submit-btn:active {
-            transform: translateY(0);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
         }
         
         .error {
@@ -120,12 +456,161 @@
         .required {
             color: #dc3545;
         }
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 25px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-btn::before {
+            content: "←";
+            margin-right: 8px;
+            font-size: 1.5rem;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading.show {
+            display: flex;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #00ffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: white;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .universe-title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .enter-btn {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Mathematical Operations</h1>
-        <form id="mathForm" action="MathOperationsServlet" method="post">
+    <!-- Galaxy Background -->
+    <div class="galaxy-container">
+        <iframe src='https://my.spline.design/galaxy-lrPztl1iHbSICu5RVGnqWbNh/' frameborder='0' width='100%' height='100%'></iframe>
+    </div>
+    
+    <!-- Main Landing Page -->
+    <div class="main-content">
+        <h1 class="universe-title">🌟 THE UNIVERSE OF MATHEMATICS 🌟</h1>
+        <p class="subtitle">✨ Discover the cosmic wonders of numbers and unlock the secrets of the mathematical universe ✨</p>
+        
+        <button class="enter-btn" onclick="showMathForm()">🚀 Enter the Mathematical Universe 🚀</button>
+    </div>
+    
+    <!-- Math Form Container -->
+    <div class="math-form-container" id="mathFormContainer">
+        <button class="close-btn" onclick="hideMathForm()">&times;</button>
+        <a href="#" class="back-btn" onclick="hideMathForm()">Back to Universe</a>
+        <div class="container">
+            <h1>🌟 Mathematical Operations 🌟</h1>
+            <p style="text-align: center; color: rgba(255,255,255,0.8); margin-bottom: 30px; font-style: italic; text-shadow: 0 0 10px rgba(0,255,255,0.5);">Choose your cosmic calculations and explore the infinite universe of mathematics</p>
+            
+            <!-- Floating cosmic elements -->
+            <div style="position: absolute; top: 20px; right: 20px; font-size: 2rem; animation: float 3s ease-in-out infinite;">✨</div>
+            <div style="position: absolute; top: 60px; right: 60px; font-size: 1.5rem; animation: float 3s ease-in-out infinite 0.5s;">⭐</div>
+            <div style="position: absolute; bottom: 20px; left: 20px; font-size: 1.8rem; animation: float 3s ease-in-out infinite 1s;">🌟</div>
+            <div style="position: absolute; bottom: 60px; left: 60px; font-size: 1.3rem; animation: float 3s ease-in-out infinite 1.5s;">💫</div>
+            
+            <form id="mathForm" action="MathOperationsServlet" method="post">
             <div class="form-group">
                 <label for="number">Enter a Number <span class="required">*</span></label>
                 <input type="number" id="number" name="number" required 
@@ -134,38 +619,76 @@
             </div>
             
             <div class="checkbox-group">
-                <h3>Select Operations:</h3>
+                <h3 style="color: #ffffff; text-align: center; margin-bottom: 25px; font-size: 1.5rem; text-shadow: 0 0 15px rgba(0,255,255,0.5);">🔮 Select Your Cosmic Operations 🔮</h3>
                 <div class="checkbox-item">
                     <input type="checkbox" id="factorial" name="operations" value="factorial">
-                    <label for="factorial">Find Factorial of the given number</label>
+                    <label for="factorial">🔢 Calculate the Factorial (n!)</label>
                 </div>
                 
                 <div class="checkbox-item">
                     <input type="checkbox" id="palindrome" name="operations" value="palindrome">
-                    <label for="palindrome">Find whether the number is Palindrome or not</label>
+                    <label for="palindrome">🔄 Check if Palindrome</label>
                 </div>
                 
                 <div class="checkbox-item">
                     <input type="checkbox" id="fibonacci" name="operations" value="fibonacci">
-                    <label for="fibonacci">Find Fibonacci series of the given number</label>
+                    <label for="fibonacci">🌀 Generate Fibonacci Series</label>
                 </div>
                 
                 <div class="checkbox-item">
                     <input type="checkbox" id="prime" name="operations" value="prime">
-                    <label for="prime">Find whether the number is Prime or Not</label>
+                    <label for="prime">⭐ Check if Prime Number</label>
                 </div>
                 
                 <div class="checkbox-item">
                     <input type="checkbox" id="cubeRoot" name="operations" value="cubeRoot">
-                    <label for="cubeRoot">Find the cube root of the number</label>
+                    <label for="cubeRoot">📐 Calculate Cube Root (∛)</label>
                 </div>
             </div>
             
-            <button type="submit" class="submit-btn">Calculate Operations</button>
+            <button type="submit" class="submit-btn">🚀 Calculate Operations</button>
         </form>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading" id="loadingAnimation">
+        <div style="text-align: center;">
+            <div class="spinner"></div>
+            <div class="loading-text">Calculating cosmic results...</div>
+        </div>
     </div>
 
     <script>
+        // Show/Hide Math Form Functions
+        function showMathForm() {
+            document.getElementById('mathFormContainer').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideMathForm() {
+            document.getElementById('mathFormContainer').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Show loading animation
+        function showLoading() {
+            document.getElementById('loadingAnimation').classList.add('show');
+        }
+        
+        // Hide loading animation
+        function hideLoading() {
+            document.getElementById('loadingAnimation').classList.remove('show');
+        }
+        
+        // Close form when clicking outside
+        document.getElementById('mathFormContainer').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideMathForm();
+            }
+        });
+        
+        // Enhanced form submission with loading
         document.getElementById('mathForm').addEventListener('submit', function(e) {
             const numberInput = document.getElementById('number');
             const number = parseFloat(numberInput.value);
@@ -191,6 +714,12 @@
                 alert('Please select at least one operation to perform.');
                 return false;
             }
+            
+            // Show loading animation before submission
+            showLoading();
+            
+            // Hide modal
+            hideMathForm();
             
             return true;
         });
