@@ -127,7 +127,7 @@
         
         /* Enter Button */
         .enter-btn {
-            background: linear-gradient(135deg, #ff0080, #8000ff, #0080ff, #00ff80, #ffff00, #ff8000, #ff0080);
+            background: linear-gradient(135deg, #ff0080, #8000ff, #0080ff, #d000ff, #ff006f, #fb00ff, #ff0080);
             background-size: 400% 400%;
             color: white;
             border: none;
@@ -200,7 +200,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(0, 255, 0, 0.05) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 50, 0.95) 100%);
             backdrop-filter: blur(25px);
             display: none;
             justify-content: center;
@@ -212,6 +216,40 @@
         
         .math-form-container.show {
             display: flex;
+        }
+        
+        .math-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 0, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(0, 255, 0, 0.02) 0%, transparent 50%);
+            animation: cosmicFlow 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes cosmicFlow {
+            0%, 100% { 
+                transform: translateX(0px) translateY(0px) rotate(0deg); 
+                opacity: 0.5;
+            }
+            25% { 
+                transform: translateX(20px) translateY(-10px) rotate(90deg); 
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateX(-10px) translateY(20px) rotate(180deg); 
+                opacity: 0.6;
+            }
+            75% { 
+                transform: translateX(-20px) translateY(-20px) rotate(270deg); 
+                opacity: 0.7;
+            }
         }
         
         .container {
@@ -625,6 +663,10 @@
             <div style="position: absolute; top: 60px; right: 60px; font-size: 1.5rem; animation: float 3s ease-in-out infinite 0.5s;">⭐</div>
             <div style="position: absolute; bottom: 20px; left: 20px; font-size: 1.8rem; animation: float 3s ease-in-out infinite 1s;">🌟</div>
             <div style="position: absolute; bottom: 50px; right: 30px; font-size: 1.3rem; animation: float 3s ease-in-out infinite 1.5s;">🌟</div>
+            <div style="position: absolute; top: 30%; left: 10%; font-size: 1.2rem; animation: float 4s ease-in-out infinite 2s;">💫</div>
+            <div style="position: absolute; top: 70%; right: 15%; font-size: 1.4rem; animation: float 3.5s ease-in-out infinite 2.5s;">⭐</div>
+            <div style="position: absolute; top: 50%; left: 5%; font-size: 1rem; animation: float 2.8s ease-in-out infinite 1.8s;">✨</div>
+            <div style="position: absolute; bottom: 30%; right: 5%; font-size: 1.1rem; animation: float 4.2s ease-in-out infinite 3s;">💫</div>
             
             <form id="mathForm" action="MathOperationsServlet" method="post">
             <div class="form-group">
@@ -638,27 +680,27 @@
                 <h3 style="color: #ffffff; text-align: center; margin-bottom: 25px; font-size: 1.5rem; text-shadow: 0 0 15px rgba(0,255,255,0.5);">🔮 Select Your Cosmic Operations 🔮</h3>
                 <div class="checkbox-item">
                     <input type="checkbox" id="factorial" name="operations" value="factorial">
-                    <label for="factorial">🔢 Calculate the Factorial (n!)</label>
+                    <label for="factorial"> Calculate the Factorial (n!)</label>
                 </div>
                 
                 <div class="checkbox-item">
                     <input type="checkbox" id="palindrome" name="operations" value="palindrome">
-                    <label for="palindrome">🔄 Check if Palindrome</label>
+                    <label for="palindrome"> Check if Palindrome</label>
                 </div>
                 
                 <div class="checkbox-item">
                     <input type="checkbox" id="fibonacci" name="operations" value="fibonacci">
-                    <label for="fibonacci">🌀 Generate Fibonacci Series</label>
+                    <label for="fibonacci"> Generate Fibonacci Series</label>
                 </div>
                 
                 <div class="checkbox-item">
                     <input type="checkbox" id="prime" name="operations" value="prime">
-                    <label for="prime">⭐ Check if Prime Number</label>
+                    <label for="prime"> Check if Prime Number</label>
                 </div>
                 
                 <div class="checkbox-item">
                     <input type="checkbox" id="cubeRoot" name="operations" value="cubeRoot">
-                    <label for="cubeRoot">📐 Calculate Cube Root (∛)</label>
+                    <label for="cubeRoot"> Calculate Cube Root (∛)</label>
                 </div>
             </div>
             
