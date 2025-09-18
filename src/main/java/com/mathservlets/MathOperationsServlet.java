@@ -135,12 +135,23 @@ public class MathOperationsServlet extends HttpServlet {
         
         // Error Content
         out.println("<div class='error-content'>");
-        out.println("<a href='index.html' class='error-nav'>Back to Universe</a>");
+        out.println("<button type='button' onclick='window.history.length > 1 ? window.history.back() : window.location.href = \"index.html\"' class='error-nav'>Back to Universe</button>");
         out.println("<div class='error-icon'>⚠️</div>");
         out.println("<h1 class='error-title'>COSMIC CALCULATION ERROR</h1>");
         out.println("<div class='error-message'>" + errorMessage + "</div>");
         out.println("<a href='index.html' class='cosmic-btn'>🚀 Return to Universe</a>");
         out.println("</div>");
+        out.println("<script>");
+        out.println("function goBack() {");
+        out.println("    // Try to go back in history");
+        out.println("    if (document.referrer && document.referrer !== window.location.href) {");
+        out.println("        window.history.back();");
+        out.println("    } else {");
+        out.println("        // If no referrer, redirect to home page");
+        out.println("        window.location.href = 'index.html';");
+        out.println("    }");
+        out.println("}");
+        out.println("</script>");
         out.println("</body></html>");
     }
     
@@ -235,12 +246,13 @@ public class MathOperationsServlet extends HttpServlet {
         out.println("</div>");
         out.println("<div class='button-group'>");
         out.println("<a href='index.html' class='cosmic-btn'>🚀 Explore Another Universe</a>");
-        out.println("<button onclick='window.history.back()' class='cosmic-btn'>⏰ Go Back</button>");
+        out.println("<button type='button' onclick='window.history.length > 1 ? window.history.back() : window.location.href = \"index.html\"' class='cosmic-btn'>⏰ Go Back</button>");
         out.println("<button onclick='window.print()' class='cosmic-btn'>🖨️ Print Results</button>");
         out.println("</div>");
         out.println("</div>");
         
         out.println("<script>");
+        out.println("");
         out.println("document.addEventListener('mousemove', function(e) {");
         out.println("    const stars = document.querySelectorAll('.star');");
         out.println("    const x = e.clientX / window.innerWidth;");

@@ -47,174 +47,146 @@
         
         /* Title */
         .universe-title {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 4rem;
+            color: #ffffff;
+            font-size: 3rem;
             font-weight: bold;
-            text-shadow: 
-                2px 2px 4px rgba(0,0,0,0.8),
-                0 0 8px rgba(0,255,255,0.3);
             margin-bottom: 2rem;
             letter-spacing: 0.1em;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            animation: titleGlow 3s ease-in-out infinite alternate, rainbowFlow 4s ease-in-out infinite;
+            text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 2px 2px 4px rgba(0,0,0,0.8);
+            animation: glow 2s ease-in-out infinite alternate;
         }
         
-        @keyframes titleGlow {
-            0% {
-                text-shadow: 
-                    2px 2px 4px rgba(0,0,0,0.8),
-                    0 0 8px rgba(0,255,255,0.3);
-            }
-            100% {
-                text-shadow: 
-                    2px 2px 4px rgba(0,0,0,0.8),
-                    0 0 12px rgba(255,0,255,0.4);
-            }
+        @keyframes glow {
+            from { 
+                text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 2px 2px 4px rgba(0,0,0,0.8); 
+            } 
+            to { 
+                text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88, 0 0 40px #00ff88, 2px 2px 4px rgba(0,0,0,0.8); 
+            } 
         }
         
-        @keyframes rainbowFlow {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+        
         
         
         /* Subtitle */
         .subtitle {
-            background: linear-gradient(45deg, #ff9ff3, #54a0ff, #5f27cd, #00d2d3, #ff9f43, #ee5a24);
+            background: linear-gradient(45deg, #ffffff, #00ffff, #ff00ff, #ffff00, #ffffff);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
             text-shadow: 
-                1px 1px 2px rgba(0,0,0,0.8),
-                0 0 6px rgba(255,255,255,0.2);
-            opacity: 0.9;
+                0 0 20px rgba(255,255,255,0.8),
+                0 0 40px rgba(0,255,255,0.6),
+                0 0 60px rgba(255,0,255,0.4),
+                1px 1px 2px rgba(0,0,0,0.9);
+            opacity: 0.98;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-align: center;
-            max-width: 800px;
-            line-height: 1.6;
-            animation: subtitleShimmer 4s ease-in-out infinite alternate, subtitleFlow 5s ease-in-out infinite;
-        }
-        
-        @keyframes subtitleShimmer {
-            0% {
-                text-shadow: 
-                    1px 1px 2px rgba(0,0,0,0.8),
-                    0 0 6px rgba(255,255,255,0.2);
-            }
-            100% {
-                text-shadow: 
-                    1px 1px 2px rgba(0,0,0,0.8),
-                    0 0 8px rgba(0,255,255,0.3);
-            }
+            max-width: 900px;
+            line-height: 1.7;
+            animation: subtitleFlow 5s ease-in-out infinite, subtitleGlow 4s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
+            font-weight: 600;
         }
         
         @keyframes subtitleFlow {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        
-        .description {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            text-shadow: 
-                1px 1px 2px rgba(0,0,0,0.8),
-                0 0 4px rgba(255,255,255,0.1);
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-align: center;
-            max-width: 700px;
-            line-height: 1.7;
-            font-style: italic;
-            animation: descriptionGlow 5s ease-in-out infinite alternate;
-        }
-        
-        @keyframes descriptionGlow {
-            0% {
-                text-shadow: 
-                    1px 1px 2px rgba(0,0,0,0.8),
-                    0 0 4px rgba(255,255,255,0.1);
-            }
-            100% {
-                text-shadow: 
-                    1px 1px 2px rgba(0,0,0,0.8),
-                    0 0 6px rgba(0,255,255,0.2);
-            }
-        }
-        
-        /* Enter Button */
-        .enter-btn {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff, #00d2d3);
-            background-size: 400% 400%;
-            color: white;
-            border: none;
-            padding: 20px 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            box-shadow: 
-                0 10px 30px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            animation: gradientShift 3s ease infinite, buttonGlow 2s ease-in-out infinite alternate;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        @keyframes buttonGlow {
-            0% {
-                box-shadow: 
-                    0 10px 30px rgba(0,0,0,0.3),
-                    inset 0 1px 0 rgba(255,255,255,0.2),
-                    0 0 20px rgba(255,107,107,0.4);
-            }
-            100% {
-                box-shadow: 
-                    0 10px 30px rgba(0,0,0,0.3),
-                    inset 0 1px 0 rgba(255,255,255,0.2),
-                    0 0 30px rgba(84,160,255,0.6);
-            }
-        }
-        
-        @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
         
-        .enter-btn:hover {
-            transform: translateY(-5px);
+        @keyframes subtitleGlow {
+            0% {
+                text-shadow: 
+                    0 0 20px rgba(255,255,255,0.8),
+                    0 0 40px rgba(0,255,255,0.6),
+                    0 0 60px rgba(255,0,255,0.4),
+                    1px 1px 2px rgba(0,0,0,0.9);
+                filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
+            }
+            100% {
+                text-shadow: 
+                    0 0 30px rgba(255,255,255,1),
+                    0 0 50px rgba(0,255,255,0.8),
+                    0 0 70px rgba(255,0,255,0.6),
+                    1px 1px 2px rgba(0,0,0,0.9);
+                filter: drop-shadow(0 0 20px rgba(0,255,255,0.8));
+            }
+        }
+        
+        
+        
+        
+        /* Enter Button */
+        .enter-btn {
+            background: linear-gradient(135deg, #ff0080, #8000ff, #0080ff, #00ff80, #ffff00, #ff8000, #ff0080);
+            background-size: 400% 400%;
+            color: white;
+            border: none;
+            padding: 25px 50px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            border-radius: 60px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
             box-shadow: 
-                0 15px 40px rgba(0,0,0,0.4),
-                inset 0 1px 0 rgba(255,255,255,0.2);
+                0 15px 40px rgba(0,0,0,0.5),
+                inset 0 2px 0 rgba(255,255,255,0.4),
+                0 0 30px rgba(255,0,128,0.6),
+                0 0 60px rgba(128,0,255,0.4);
+            transition: all 0.4s ease;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.8);
+            animation: buttonRainbow 3s ease-in-out infinite, buttonGlow 4s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 20px rgba(255,0,128,0.8));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes buttonRainbow {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 
+                    0 15px 40px rgba(0,0,0,0.5),
+                    inset 0 2px 0 rgba(255,255,255,0.4),
+                    0 0 30px rgba(255,0,128,0.6),
+                    0 0 60px rgba(128,0,255,0.4);
+                filter: drop-shadow(0 0 20px rgba(255,0,128,0.8));
+            }
+            100% {
+                box-shadow: 
+                    0 15px 40px rgba(0,0,0,0.5),
+                    inset 0 2px 0 rgba(255,255,255,0.4),
+                    0 0 40px rgba(255,0,128,1),
+                    0 0 80px rgba(128,0,255,0.8);
+                filter: drop-shadow(0 0 30px rgba(255,0,128,1));
+            }
+        }
+        
+        
+        .enter-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 20px 50px rgba(0,0,0,0.6),
+                inset 0 2px 0 rgba(255,255,255,0.5),
+                0 0 50px rgba(255,0,128,1),
+                0 0 100px rgba(128,0,255,0.8);
+            filter: drop-shadow(0 0 40px rgba(255,0,128,1));
         }
         
         .enter-btn:active {
@@ -660,6 +632,23 @@
     </div>
 
     <script>
+        // Hide loading animation when page loads or becomes visible
+        window.addEventListener('load', function() {
+            hideLoading();
+        });
+        
+        // Also hide loading when page becomes visible (for back navigation)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                hideLoading();
+            }
+        });
+        
+        // Hide loading on page focus (another way to handle back navigation)
+        window.addEventListener('focus', function() {
+            hideLoading();
+        });
+        
         // Show/Hide Math Form Functions
         function showMathForm() {
             document.getElementById('mathFormContainer').classList.add('show');
